@@ -1,0 +1,396 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="THUVIENModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="bansaosach">
+          <Key>
+            <PropertyRef Name="maBanSao" />
+          </Key>
+          <Property Name="maSach" Type="varchar" MaxLength="6" />
+          <Property Name="maBanSao" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="soThuTu" Type="int" />
+          <Property Name="loaiBanSao" Type="int" />
+          <Property Name="gia" Type="int" />
+          <Property Name="trangThai" Type="int" />
+          <Property Name="xoa" Type="int" />
+        </EntityType>
+        <EntityType Name="chitietmuonsach">
+          <Key>
+            <PropertyRef Name="maThongTinMuonSach" />
+          </Key>
+          <Property Name="maThongTinMuonSach" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="maBanSaoSach" Type="varchar" MaxLength="10" />
+          <Property Name="trangThai" Type="int" />
+          <Property Name="ngayMuon" Type="varchar" MaxLength="45" />
+          <Property Name="ngayTra" Type="varchar" MaxLength="45" />
+          <Property Name="tienPhat" Type="int" />
+          <Property Name="lyDoPhat" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="chitiettacgia">
+          <Key>
+            <PropertyRef Name="maSach" />
+            <PropertyRef Name="maTacGia" />
+          </Key>
+          <Property Name="maSach" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="maTacGia" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="nguoimuon">
+          <Key>
+            <PropertyRef Name="maNguoiMuon" />
+          </Key>
+          <Property Name="maNguoiMuon" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="tenTaiKhoan" Type="varchar" MaxLength="20" />
+          <Property Name="mssv" Type="varchar" MaxLength="8" />
+          <Property Name="soTienDatCoc" Type="int" />
+          <Property Name="giaiDoanHoc" Type="varchar" MaxLength="15" />
+          <Property Name="trangThai" Type="int" />
+        </EntityType>
+        <EntityType Name="nhaphathanh">
+          <Key>
+            <PropertyRef Name="maNhaPhatHanh" />
+          </Key>
+          <Property Name="maNhaPhatHanh" Type="int" Nullable="false" />
+          <Property Name="tenNhaPhatHanh" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="sach">
+          <Key>
+            <PropertyRef Name="maSach" />
+          </Key>
+          <Property Name="maSach" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="tenSach" Type="varchar" MaxLength="45" />
+          <Property Name="maNhaPhatHanh" Type="int" />
+          <Property Name="isbn" Type="varchar" MaxLength="13" />
+        </EntityType>
+        <EntityType Name="tacgia">
+          <Key>
+            <PropertyRef Name="maTacGia" />
+          </Key>
+          <Property Name="maTacGia" Type="int" Nullable="false" />
+          <Property Name="tenTacGia" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="taikhoan">
+          <Key>
+            <PropertyRef Name="tenTaiKhoan" />
+          </Key>
+          <Property Name="tenTaiKhoan" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="matKhau" Type="varchar" MaxLength="20" />
+          <Property Name="ten" Type="varchar" MaxLength="45" />
+          <Property Name="gioiTinh" Type="varchar" MaxLength="3" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="soDienThoai" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="themuon">
+          <Key>
+            <PropertyRef Name="maTheMuon" />
+          </Key>
+          <Property Name="maTheMuon" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ngayHetHan" Type="varchar" MaxLength="15" />
+          <Property Name="trangThai" Type="int" />
+          <Property Name="maKichHoat" Type="varchar" MaxLength="10" />
+          <Property Name="maNguoiMuon" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="thongtinmuontrasach">
+          <Key>
+            <PropertyRef Name="maThongTinMuonTraSach" />
+          </Key>
+          <Property Name="maThongTinMuonTraSach" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="ngayDangKy" Type="varchar" MaxLength="10" />
+          <Property Name="hanTra" Type="varchar" MaxLength="10" />
+          <Property Name="trangThai" Type="varchar" MaxLength="15" />
+          <Property Name="maNguoiMuon" Type="varchar" MaxLength="15" />
+          <Property Name="tienDatCoc" Type="int" />
+        </EntityType>
+        <EntityType Name="thuthu">
+          <Key>
+            <PropertyRef Name="maThuThu" />
+          </Key>
+          <Property Name="maThuThu" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="tenTaiKhoan" Type="varchar" MaxLength="20" />
+          <Property Name="ngaySinh" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityContainer Name="THUVIENModelStoreContainer">
+          <EntitySet Name="bansaosach" EntityType="Self.bansaosach" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="chitietmuonsach" EntityType="Self.chitietmuonsach" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="chitiettacgia" EntityType="Self.chitiettacgia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="nguoimuon" EntityType="Self.nguoimuon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="nhaphathanh" EntityType="Self.nhaphathanh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sach" EntityType="Self.sach" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tacgia" EntityType="Self.tacgia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="taikhoan" EntityType="Self.taikhoan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="themuon" EntityType="Self.themuon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="thongtinmuontrasach" EntityType="Self.thongtinmuontrasach" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="thuthu" EntityType="Self.thuthu" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="THUVIENModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="bansaosach">
+          <Key>
+            <PropertyRef Name="maBanSao" />
+          </Key>
+          <Property Name="maSach" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="maBanSao" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="soThuTu" Type="Int32" />
+          <Property Name="loaiBanSao" Type="Int32" />
+          <Property Name="gia" Type="Int32" />
+          <Property Name="trangThai" Type="Int32" />
+          <Property Name="xoa" Type="Int32" />
+        </EntityType>
+        <EntityType Name="chitietmuonsach">
+          <Key>
+            <PropertyRef Name="maThongTinMuonSach" />
+          </Key>
+          <Property Name="maThongTinMuonSach" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="maBanSaoSach" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="trangThai" Type="Int32" />
+          <Property Name="ngayMuon" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="ngayTra" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="tienPhat" Type="Int32" />
+          <Property Name="lyDoPhat" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="chitiettacgia">
+          <Key>
+            <PropertyRef Name="maSach" />
+            <PropertyRef Name="maTacGia" />
+          </Key>
+          <Property Name="maSach" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="maTacGia" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="nguoimuon">
+          <Key>
+            <PropertyRef Name="maNguoiMuon" />
+          </Key>
+          <Property Name="maNguoiMuon" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tenTaiKhoan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="mssv" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="soTienDatCoc" Type="Int32" />
+          <Property Name="giaiDoanHoc" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="trangThai" Type="Int32" />
+        </EntityType>
+        <EntityType Name="nhaphathanh">
+          <Key>
+            <PropertyRef Name="maNhaPhatHanh" />
+          </Key>
+          <Property Name="maNhaPhatHanh" Type="Int32" Nullable="false" />
+          <Property Name="tenNhaPhatHanh" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="sach">
+          <Key>
+            <PropertyRef Name="maSach" />
+          </Key>
+          <Property Name="maSach" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tenSach" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="maNhaPhatHanh" Type="Int32" />
+          <Property Name="isbn" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tacgia">
+          <Key>
+            <PropertyRef Name="maTacGia" />
+          </Key>
+          <Property Name="maTacGia" Type="Int32" Nullable="false" />
+          <Property Name="tenTacGia" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="taikhoan">
+          <Key>
+            <PropertyRef Name="tenTaiKhoan" />
+          </Key>
+          <Property Name="tenTaiKhoan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="matKhau" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ten" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="gioiTinh" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="soDienThoai" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="themuon">
+          <Key>
+            <PropertyRef Name="maTheMuon" />
+          </Key>
+          <Property Name="maTheMuon" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ngayHetHan" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="trangThai" Type="Int32" />
+          <Property Name="maKichHoat" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="maNguoiMuon" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="thongtinmuontrasach">
+          <Key>
+            <PropertyRef Name="maThongTinMuonTraSach" />
+          </Key>
+          <Property Name="maThongTinMuonTraSach" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ngayDangKy" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="hanTra" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="trangThai" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="maNguoiMuon" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="tienDatCoc" Type="Int32" />
+        </EntityType>
+        <EntityType Name="thuthu">
+          <Key>
+            <PropertyRef Name="maThuThu" />
+          </Key>
+          <Property Name="maThuThu" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tenTaiKhoan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ngaySinh" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="BookEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="bansaosaches" EntityType="Self.bansaosach" />
+          <EntitySet Name="chitietmuonsaches" EntityType="Self.chitietmuonsach" />
+          <EntitySet Name="chitiettacgias" EntityType="Self.chitiettacgia" />
+          <EntitySet Name="nguoimuons" EntityType="Self.nguoimuon" />
+          <EntitySet Name="nhaphathanhs" EntityType="Self.nhaphathanh" />
+          <EntitySet Name="saches" EntityType="Self.sach" />
+          <EntitySet Name="tacgias" EntityType="Self.tacgia" />
+          <EntitySet Name="taikhoans" EntityType="Self.taikhoan" />
+          <EntitySet Name="themuons" EntityType="Self.themuon" />
+          <EntitySet Name="thongtinmuontrasaches" EntityType="Self.thongtinmuontrasach" />
+          <EntitySet Name="thuthus" EntityType="Self.thuthu" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="THUVIENModelStoreContainer" CdmEntityContainer="BookEntities">
+          <EntitySetMapping Name="bansaosaches">
+            <EntityTypeMapping TypeName="THUVIENModel.bansaosach">
+              <MappingFragment StoreEntitySet="bansaosach">
+                <ScalarProperty Name="maSach" ColumnName="maSach" />
+                <ScalarProperty Name="maBanSao" ColumnName="maBanSao" />
+                <ScalarProperty Name="soThuTu" ColumnName="soThuTu" />
+                <ScalarProperty Name="loaiBanSao" ColumnName="loaiBanSao" />
+                <ScalarProperty Name="gia" ColumnName="gia" />
+                <ScalarProperty Name="trangThai" ColumnName="trangThai" />
+                <ScalarProperty Name="xoa" ColumnName="xoa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="chitietmuonsaches">
+            <EntityTypeMapping TypeName="THUVIENModel.chitietmuonsach">
+              <MappingFragment StoreEntitySet="chitietmuonsach">
+                <ScalarProperty Name="maThongTinMuonSach" ColumnName="maThongTinMuonSach" />
+                <ScalarProperty Name="maBanSaoSach" ColumnName="maBanSaoSach" />
+                <ScalarProperty Name="trangThai" ColumnName="trangThai" />
+                <ScalarProperty Name="ngayMuon" ColumnName="ngayMuon" />
+                <ScalarProperty Name="ngayTra" ColumnName="ngayTra" />
+                <ScalarProperty Name="tienPhat" ColumnName="tienPhat" />
+                <ScalarProperty Name="lyDoPhat" ColumnName="lyDoPhat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="chitiettacgias">
+            <EntityTypeMapping TypeName="THUVIENModel.chitiettacgia">
+              <MappingFragment StoreEntitySet="chitiettacgia">
+                <ScalarProperty Name="maSach" ColumnName="maSach" />
+                <ScalarProperty Name="maTacGia" ColumnName="maTacGia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nguoimuons">
+            <EntityTypeMapping TypeName="THUVIENModel.nguoimuon">
+              <MappingFragment StoreEntitySet="nguoimuon">
+                <ScalarProperty Name="maNguoiMuon" ColumnName="maNguoiMuon" />
+                <ScalarProperty Name="tenTaiKhoan" ColumnName="tenTaiKhoan" />
+                <ScalarProperty Name="mssv" ColumnName="mssv" />
+                <ScalarProperty Name="soTienDatCoc" ColumnName="soTienDatCoc" />
+                <ScalarProperty Name="giaiDoanHoc" ColumnName="giaiDoanHoc" />
+                <ScalarProperty Name="trangThai" ColumnName="trangThai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nhaphathanhs">
+            <EntityTypeMapping TypeName="THUVIENModel.nhaphathanh">
+              <MappingFragment StoreEntitySet="nhaphathanh">
+                <ScalarProperty Name="maNhaPhatHanh" ColumnName="maNhaPhatHanh" />
+                <ScalarProperty Name="tenNhaPhatHanh" ColumnName="tenNhaPhatHanh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="saches">
+            <EntityTypeMapping TypeName="THUVIENModel.sach">
+              <MappingFragment StoreEntitySet="sach">
+                <ScalarProperty Name="maSach" ColumnName="maSach" />
+                <ScalarProperty Name="tenSach" ColumnName="tenSach" />
+                <ScalarProperty Name="maNhaPhatHanh" ColumnName="maNhaPhatHanh" />
+                <ScalarProperty Name="isbn" ColumnName="isbn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tacgias">
+            <EntityTypeMapping TypeName="THUVIENModel.tacgia">
+              <MappingFragment StoreEntitySet="tacgia">
+                <ScalarProperty Name="maTacGia" ColumnName="maTacGia" />
+                <ScalarProperty Name="tenTacGia" ColumnName="tenTacGia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="taikhoans">
+            <EntityTypeMapping TypeName="THUVIENModel.taikhoan">
+              <MappingFragment StoreEntitySet="taikhoan">
+                <ScalarProperty Name="tenTaiKhoan" ColumnName="tenTaiKhoan" />
+                <ScalarProperty Name="matKhau" ColumnName="matKhau" />
+                <ScalarProperty Name="ten" ColumnName="ten" />
+                <ScalarProperty Name="gioiTinh" ColumnName="gioiTinh" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="soDienThoai" ColumnName="soDienThoai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="themuons">
+            <EntityTypeMapping TypeName="THUVIENModel.themuon">
+              <MappingFragment StoreEntitySet="themuon">
+                <ScalarProperty Name="maTheMuon" ColumnName="maTheMuon" />
+                <ScalarProperty Name="ngayHetHan" ColumnName="ngayHetHan" />
+                <ScalarProperty Name="trangThai" ColumnName="trangThai" />
+                <ScalarProperty Name="maKichHoat" ColumnName="maKichHoat" />
+                <ScalarProperty Name="maNguoiMuon" ColumnName="maNguoiMuon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="thongtinmuontrasaches">
+            <EntityTypeMapping TypeName="THUVIENModel.thongtinmuontrasach">
+              <MappingFragment StoreEntitySet="thongtinmuontrasach">
+                <ScalarProperty Name="maThongTinMuonTraSach" ColumnName="maThongTinMuonTraSach" />
+                <ScalarProperty Name="ngayDangKy" ColumnName="ngayDangKy" />
+                <ScalarProperty Name="hanTra" ColumnName="hanTra" />
+                <ScalarProperty Name="trangThai" ColumnName="trangThai" />
+                <ScalarProperty Name="maNguoiMuon" ColumnName="maNguoiMuon" />
+                <ScalarProperty Name="tienDatCoc" ColumnName="tienDatCoc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="thuthus">
+            <EntityTypeMapping TypeName="THUVIENModel.thuthu">
+              <MappingFragment StoreEntitySet="thuthu">
+                <ScalarProperty Name="maThuThu" ColumnName="maThuThu" />
+                <ScalarProperty Name="tenTaiKhoan" ColumnName="tenTaiKhoan" />
+                <ScalarProperty Name="ngaySinh" ColumnName="ngaySinh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

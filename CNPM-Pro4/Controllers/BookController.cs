@@ -13,5 +13,19 @@ namespace CNPM_Pro4.Controllers
         {
             return View();
         }
+
+        public ActionResult PartialNav()
+        {
+            return PartialView("PartialNav");
+        }
+        public ActionResult PartialFooter()
+        {
+            return PartialView("PartialFooter");
+        }
+
+        public ActionResult LoginLogout()
+        {
+            return PartialView();
+        }
     }
 }

@@ -7,7 +7,7 @@ END
 GO
 
 --Tao CSDL
-create database THUVIENA
+create database THUVIEN
 GO
 use THUVIEN
 GO
