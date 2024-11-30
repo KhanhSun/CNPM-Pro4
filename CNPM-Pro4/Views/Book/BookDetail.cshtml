@@ -1,0 +1,77 @@
+﻿@model CNPM_Pro4.Models.sach
+@{
+    ViewBag.Title = "ChiTietSach";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .book-details {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .thumbnail {
+        text-align: center;
+    }
+
+    .book-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .book-cover {
+        max-width: 200px;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    .book-description {
+        margin-bottom: 20px;
+        text-align: justify;
+        text-indent: 20px;
+    }
+
+    .book-info {
+        text-align: left;
+    }
+
+    .book-updated, .book-price {
+        margin-bottom: 5px;
+    }
+
+    .add-to-cart {
+        padding: 10px 20px;
+        border-radius: 3px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+
+        .add-to-cart:hover {
+            background-color: #0056b3;
+        }
+</style>
+<h2>Chi tiết sách @Model.tenSach</h2>
+
+<div class="book-details">
+    <div class="thumbnail">
+        <h3 class="book-title">@Model.tenSach</h3>
+        <img src="~/Image/" alt="@Model.tenSach" class="book-cover">
+        <div class="book-description">
+            <p>@Html.Raw(@Model.isbn.ToString().Replace("\n", "</p><p>&nbsp&nbsp&nbsp&nbsp&nbsp"))</p>
+        </div>
+    </div>
+
+    <div class="book-info">
+        <p class="book-updated">Cập nhật vào: @Html.FormatValue(@Model.tenSach, "{0:dd/MM/yyyy}")</p>
+        <p class="book-price">Giá bán: <span>@Html.FormatValue(@Model.isbn, "{0:#,##0}") VND</span></p>
+        <a href="@Url.Action("ThemGioHang", "GioHang", new { ms = Model.maSach, url = Request.Url.ToString() })" class="btn btn-primary add-to-cart">
+            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> MƯỢN SÁCH NGAY???
+    </div>
+</div>

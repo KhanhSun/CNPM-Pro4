@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<CNPM_Pro4.Models.sach>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,3 +6,65 @@
 
 <h2>Index</h2>
 
+<style type="text/css">
+    .imgbook {
+        transition: all 1s ease-in;
+        width: 400px;
+    }
+
+        .imgbook:hover {
+            transform: scale(0.9);
+            cursor: pointer;
+        }
+</style>
+
+<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+    <h2 class="text-center">SÁCH MỚI</h2>
+    <hr>
+    <div class="row text-center">
+        @foreach (var sach in Model)
+        {
+            <div class="col-sm-4 col-md-4 col-lg-4 col-xs-6">
+                <div class="thumbnail">
+                    <img src="~/Image/" alt="Thumbnail Image 1" class="img-responsive img-rounded imgbook" style="width:400px;">
+                    <div class="caption">
+                        <h4 style="min-height:70px;">
+                            <a href="@Url.Action("BookDetail","Book", new { id =sach.maSach})">@sach.tenSach</a>
+                        </h4>
+                        <p>
+                            <a href="@Url.Action("ThemGioHang", "GioHang", new { id = sach.maSach, url = Request.Url.ToString() })" class="btn btn-primary" role="button">
+                                <span class="glyphicon" aria-hidden="true"></span> MƯỢN SÁCH NGAY???
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="text-center"> <p>Trang hiện tại: @ViewBag.CurrentPage / @ViewBag.TotalPages</p> </div>
+    <nav class="text-center">
+        <!-- Add class .pagination-lg for larger blocks or .pagination-sm for smaller blocks-->
+        <ul class="pagination">
+            @for (int i = 1; i <= ViewBag.TotalPages; i++)
+            {
+                if (i == ViewBag.CurrentPage)
+                {
+                    <li class="active">
+                        <a href="#">
+                            @i
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li><a href="@Url.Action("Index", new { page = i })">@i</a></li>
+                }
+            }
+        </ul>
+    </nav>
+</div>
+<hr>
+@*@Html.Action("_PartialSachBanNhieu", "SachOnline")*@
+@*@section _PartialSachBanNhieu{
+    @Html.Action("_PartialSachBanNhieu", "SachOnline")
+}*@
