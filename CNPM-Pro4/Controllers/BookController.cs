@@ -27,5 +27,10 @@ namespace CNPM_Pro4.Controllers
         {
             return PartialView();
         }
+
+        public ActionResult PartialChuDe()
+        {
+            return PartialView("PartialChuDe");
+        }
     }
 }
