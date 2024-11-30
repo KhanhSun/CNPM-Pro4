@@ -1,0 +1,74 @@
+﻿@model IEnumerable<CNPM_Pro4.Models.sach>
+
+@{
+    ViewBag.Title = "TimKiem";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    if (Model != null)
+    {
+        if (Model.Count() > 0)
+        {
+            <h2>Kết quả tìm "@ViewBag.strSearch"</h2>
+            @*<table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.tenSach)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.maSach)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.isbn)
+                        </th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tenSach)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.maSach)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.isbn)
+                            </td>
+                            <td>
+                                <a href="@Url.Action("ChiTietSach", "SachOnline", new { id = item.maSach })">Chi tiết sách</a>
+                            </td>
+                        </tr>
+                    }
+                </table>*@
+            <div class="row text-center">
+                @foreach (var sach in Model)
+                {
+                    <div class="col-sm-4 col-md-4 col-lg-4 col-xs-6">
+                        <div class="thumbnail">
+                            <img src="~/Image/" alt="Thumbnail Image 1" class="img-responsive img-rounded imgbook" style="width:400px;">
+                            <div class="caption">
+                                <h4 style="min-height:70px;">
+                                    <a href="@Url.Action("ChiTietSach","SachOnline", new { id =sach.maSach})">@sach.tenSach</a>
+                                </h4>
+                                <p>
+                                    <a href="@Url.Action("ThemGioHang", "GioHang", new { id = sach.maSach, url = Request.Url.ToString() })" class="btn btn-primary" role="button">
+                                        <span class="glyphicon " aria-hidden="true"></span> MƯỢN SÁCH NGAY???
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <h2>Không tìm thấy "@ViewBag.strSearch"</h2>
+        }
+    }
+    else
+    {
+        <h2>Không có kết quả cho "@ViewBag.strSearch"</h2>
+    }
+}
